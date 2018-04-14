@@ -50,11 +50,11 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="loginErrLabel" layoutX="22.0" layoutY="190.0" prefHeight="17.0" prefWidth="197.0" textFill="#e82121">
+      <Label fx:id="loginErrLabel" layoutX="22.0" layoutY="190.0" prefHeight="17.0" prefWidth="170.0" textFill="#e82121">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="186.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="11.0" prefWidth="114.0" style="-fx-background-color: #FFFFFF;" text="Register New User" textFill="#0080ae" />
+      <Button layoutX="196.0" layoutY="186.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="11.0" prefWidth="114.0" style="-fx-background-color: #f4f4f4;" text="Register New User" textFill="#0080ae" />
    </children>
 </AnchorPane>
