@@ -226,8 +226,10 @@ public class FXMLLoginViewController implements Initializable {
      * @throws IOException 
      */
     public void sceneChangeMain(ActionEvent event) throws IOException {
+        String loggedInUsername = loginUsernameField.getText();
+        
         SceneChanger sc = new SceneChanger();
-        sc.changeScenes(event, "FXMLMainView.fxml", "Main");
+        sc.changeScenesWithData(event, "FXMLMainView.fxml", "Main", loggedInUsername);
     }
 
     /**

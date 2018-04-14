@@ -27,4 +27,23 @@ public class SceneChanger {
         stage.show();
 
     }
+    
+    public void changeScenesWithData(ActionEvent event, String viewName, String title, String loggedInUsername) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(viewName));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        
+        FXMLMainViewController controller = loader.getController();
+        //controller.setText(loggedInUsername);
+        controller.getLoggedInUsername(loggedInUsername);
+        
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

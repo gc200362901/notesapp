@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -17,6 +19,12 @@ import javafx.fxml.Initializable;
  * @author warmcheese
  */
 public class FXMLMainViewController implements Initializable {
+    
+    @FXML private Label welcomeLabel;
+    
+    public void getLoggedInUsername(String loggedInUsername) {
+        this.welcomeLabel.setText("Welcome "+loggedInUsername);
+    }
 
     /**
      * This method changes scenes to the Edit view

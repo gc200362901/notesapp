@@ -18,6 +18,7 @@
                         <Font name="Century Gothic" size="32.0" />
                     </font>
                 </Label>
+            <Label fx:id="welcomeLabel" layoutX="596.0" layoutY="45.0" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="233.0" layoutY="67.0" prefHeight="490.0" prefWidth="91.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="691.0" AnchorPane.topAnchor="67.0">
@@ -27,7 +28,7 @@
                         <Insets left="10.0" top="75.0" />
                     </padding>
                     <children>
-                        <fx:define>
+<fx:define>
                             <Image fx:id="editBtnImage" url="@images/edit.png" />
                         </fx:define>
                         <Button fx:id="editBtn" mnemonicParsing="false" onAction="#sceneChangeEdit">
