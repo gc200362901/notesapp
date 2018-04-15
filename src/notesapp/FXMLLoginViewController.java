@@ -229,7 +229,7 @@ public class FXMLLoginViewController implements Initializable {
         String loggedInUsername = loginUsernameField.getText();
         
         SceneChanger sc = new SceneChanger();
-        sc.changeScenesWithData(event, "FXMLMainView.fxml", "Main", loggedInUsername);
+        sc.changeScenesWithUsername(event, "FXMLMainView.fxml", "Main", loggedInUsername);
     }
 
     /**

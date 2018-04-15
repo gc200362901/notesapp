@@ -12,24 +12,14 @@ import java.sql.SQLException;
  */
 public class User {
 
-    private int userId;
     private String username;
     private String hashPw;
     private byte[] salt;
 
-    public User(int userId, String username, String hashPw, byte[] salt) {
-        setUserId(userId);
+    public User(String username, String hashPw, byte[] salt) {
         setUsername(username);
         setHashPw(hashPw);
         setSalt(salt);
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -94,6 +84,40 @@ public class User {
     }
 
     public int returnDbUserId() throws SQLException {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs;
+        int dbUserId = 0;
+
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://aws.computerstudi.es:3306/gc200362901", "gc200362901", "y2RKsUKFUX");
+
+            String sql = "SELECT userId FROM tb_user WHERE username = ?";
+
+            preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setString(1, username);
+
+            rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                dbUserId = rs.getInt("userId");
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return dbUserId;
+    }
+
+    public static int returnDbUserId(String username) throws SQLException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs;

@@ -18,7 +18,7 @@
                         <Font name="Century Gothic" size="32.0" />
                     </font>
                 </Label>
-            <Label fx:id="welcomeLabel" layoutX="596.0" layoutY="45.0" />
+                <Label fx:id="welcomeLabel" layoutX="596.0" layoutY="45.0" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="233.0" layoutY="67.0" prefHeight="490.0" prefWidth="91.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="691.0" AnchorPane.topAnchor="67.0">
@@ -28,7 +28,7 @@
                         <Insets left="10.0" top="75.0" />
                     </padding>
                     <children>
-<fx:define>
+                        <fx:define>
                             <Image fx:id="editBtnImage" url="@images/edit.png" />
                         </fx:define>
                         <Button fx:id="editBtn" mnemonicParsing="false" onAction="#sceneChangeEdit">
@@ -57,17 +57,18 @@
             </children>
         </AnchorPane>
         <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="490.0" prefWidth="691.0">
-         <children>
-            <Label layoutX="136.0" layoutY="165.0" text="Lets Get Started">
-               <font>
-                  <Font name="Century Gothic" size="26.0" />
-               </font>
-            </Label>
-            <Label layoutX="136.0" layoutY="204.0" prefHeight="41.0" prefWidth="320.0" text="Use the Left Menu to being your budget">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
+            <children>
+                <Label layoutX="136.0" layoutY="165.0" text="Lets Get Started">
+                    <font>
+                        <Font name="Century Gothic" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="136.0" layoutY="204.0" prefHeight="41.0" prefWidth="320.0" text="Use the Left Menu to being your budget">
+                    <font>
+                        <Font name="Century Gothic" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

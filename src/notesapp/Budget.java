@@ -16,7 +16,7 @@ public class Budget {
     private String monthDescription;
     
     public Budget(int userId, int monthId, String monthDescription, int mortgage, int electricity,
-            int gas, int water, int internet, int car, int insurance) {
+            int gas, int water, int internet, int car, int insurance, int fuel, int food, int other) {
         validateUserId(userId);
         validateMonthId(monthId);
         validateMortgage(mortgage);
