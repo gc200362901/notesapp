@@ -32,8 +32,6 @@ public class FXMLMainViewController implements Initializable {
 
     public void getLoggedInUsername(String loggedInUsername) {
         this.welcomeLabel.setText("Welcome " + loggedInUsername);
-
-        System.out.println(loggedInUsername);
     }
 
     public String getLabelUsernameFromLabel() {
@@ -44,11 +42,12 @@ public class FXMLMainViewController implements Initializable {
 
     public String parseLabelText(String labelText) {
         String username = labelText.substring(8);
-
+        
         return username;
     }
 
     public void editButtonPressed(ActionEvent event) throws IOException, SQLException {
+        
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
