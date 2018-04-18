@@ -64,4 +64,22 @@ public class SceneChanger {
         stage.show();
 
     }
+    
+        public void changeScenesUserIdToSummary(ActionEvent event, String viewName, String title, int loggedInUserId) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(viewName));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        
+        FXMLSummaryViewController controller = loader.getController();
+        controller.getLoggedInUserId(loggedInUserId);
+        
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }

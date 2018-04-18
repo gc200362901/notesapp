@@ -39,7 +39,7 @@
                         <fx:define>
                             <Image fx:id="summaryBtnImage" url="@images/summary.png" />
                         </fx:define>
-                        <Button fx:id="summaryBtn" mnemonicParsing="false">
+                        <Button fx:id="summaryBtn" mnemonicParsing="false" onAction="#summaryButtonPressed">
                             <graphic>
                                 <ImageView image="$summaryBtnImage" />
                             </graphic>

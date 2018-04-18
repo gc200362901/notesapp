@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notesapp.FXMLSummaryViewController">
+    <children>
+        <AnchorPane layoutX="240.0" layoutY="66.0" prefHeight="67.0" prefWidth="713.0" style="-fx-background-color: #E8F9C2;" AnchorPane.bottomAnchor="492.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="255.0" layoutY="13.0" text="BUDGET PLANNER">
+                    <font>
+                        <Font name="Century Gothic" size="32.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="233.0" layoutY="67.0" prefHeight="490.0" prefWidth="91.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="691.0" AnchorPane.topAnchor="67.0">
+            <children>
+                <VBox layoutX="4.0" layoutY="36.0" prefHeight="382.0" prefWidth="107.0" spacing="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <padding>
+                        <Insets left="10.0" top="75.0" />
+                    </padding>
+                    <children>
+                        <fx:define>
+                            <Image fx:id="editBtnImage" url="@images/edit.png" />
+                        </fx:define>
+                        <Button fx:id="editBtn" mnemonicParsing="false">
+                            <graphic>
+                                <ImageView image="$editBtnImage" />
+                            </graphic>
+                        </Button>
+                        <fx:define>
+                            <Image fx:id="summaryBtnImage" url="@images/summary.png" />
+                        </fx:define>
+                        <Button fx:id="summaryBtn" mnemonicParsing="false">
+                            <graphic>
+                                <ImageView image="$summaryBtnImage" />
+                            </graphic>
+                        </Button>
+                        <fx:define>
+                            <Image fx:id="logoutBtnImage" url="@images/logout.png" />
+                        </fx:define>
+                        <Button fx:id="logoutBtn" mnemonicParsing="false">
+                            <graphic>
+                                <ImageView image="$logoutBtnImage" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="490.0" prefWidth="691.0">
+            <children>
+                <BarChart layoutX="50.0" layoutY="237.0" prefHeight="175.0" prefWidth="500.0">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+                <PieChart layoutX="315.0" layoutY="20.0" prefHeight="217.0" prefWidth="241.0" />
+                <GridPane layoutX="50.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Mortgage:">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Electricity:" GridPane.rowIndex="1">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Gas:" GridPane.rowIndex="2">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Water:" GridPane.rowIndex="3">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Internet:" GridPane.rowIndex="4">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Car:" GridPane.rowIndex="5">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Insurance:" GridPane.rowIndex="6">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Fuel:" GridPane.rowIndex="7">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Food:" GridPane.rowIndex="8">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label text="Other:" GridPane.rowIndex="9">
+                            <font>
+                                <Font name="Century Gothic" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="mortgageSummaryLabel" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="electricitySummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="gasSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="waterSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="internetSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="carSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="insuranceSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="fuelSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="foodSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="otherSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                    </children>
+                </GridPane>
+                <Label fx:id="userIdLabel" layoutX="14.0" layoutY="392.0" text="" visible="false" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

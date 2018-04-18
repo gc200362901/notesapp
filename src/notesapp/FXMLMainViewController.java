@@ -40,6 +40,14 @@ public class FXMLMainViewController implements Initializable {
         
         return username;
     }
+    
+    public void summaryButtonPressed(ActionEvent event) throws SQLException, IOException {               
+        String labelText = getLabelUsernameFromLabel();
+        String username = parseLabelText(labelText);
+        int loggedInUserId = User.returnDbUserId(username);
+
+        sceneChangeSummary(event, loggedInUserId);
+    }
 
     public void editButtonPressed(ActionEvent event) throws IOException, SQLException {
         
@@ -59,6 +67,18 @@ public class FXMLMainViewController implements Initializable {
     public void sceneChangeEdit(ActionEvent event, int loggedInUserId) throws IOException {
         SceneChanger sc = new SceneChanger();
         sc.changeScenesUserId(event, "FXMLEditView.fxml", "Edit", loggedInUserId);
+    }
+    
+    
+    /**
+     * This method changes scenes to the Edit view
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void sceneChangeSummary(ActionEvent event, int loggedInUserId) throws IOException {
+        SceneChanger sc = new SceneChanger();
+        sc.changeScenesUserIdToSummary(event, "FXMLSummaryView.fxml", "Summary", loggedInUserId);
     }
 
     /**

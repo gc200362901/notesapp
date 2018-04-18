@@ -211,59 +211,6 @@ public class FXMLEditViewController implements Initializable {
         editErrLabel.setText(e.getMessage());
     }
 
-    /*
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet rs = null;
-
-    String labelText = getLabelUsernameFromLabel();
-    String username = parseLabelText(labelText);
-    int userId = User.returnDbUserId(username);
-
-    ObservableList<Budget> userBudget = FXCollections.observableArrayList();
-
-    
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://aws.computerstudi.es:3306/gc200362901", "gc200362901", "y2RKsUKFUX");
-        String sql = ("SELECT userId, monthId, monthDescription, mortgage, electricity, "
-                + "gas, water, internet, car, insurance, fuel, food, other "
-                + "FROM tb_finance WHERE userId = ?");
-        preparedStatement = conn.prepareStatement(sql);
-
-        preparedStatement.setInt(1, userId);
-
-        rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            Budget budget = new Budget(rs.getInt("userId"), rs.getInt("monthId"),
-                    rs.getString("monthDescription"), rs.getInt("mortgage"),
-                    rs.getInt("electricity"), rs.getInt("gas"), rs.getInt("water"),
-                    rs.getInt("internet"), rs.getInt("car"), rs.getInt("insurance"),
-                    rs.getInt("fuel"), rs.getInt("food"), rs.getInt("other"));
-
-            userBudget.add(budget);
-        }
-    }
-    catch (Exception e
-
-    
-        ) {
-            System.err.println(e);
-    }
-
-    
-        finally {
-            if (conn != null) {
-            conn.close();
-        }
-        if (preparedStatement != null) {
-            preparedStatement.close();
-        }
-        if (rs != null) {
-            rs.close();
-        }
-    }
-     */
     /**
      * Initializes the controller class.
      */
