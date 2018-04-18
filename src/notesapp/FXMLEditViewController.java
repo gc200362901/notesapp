@@ -1,5 +1,6 @@
 package notesapp;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -151,17 +153,17 @@ public class FXMLEditViewController implements Initializable {
         fuel = Integer.parseInt(fuelTextField.getText());
         food = Integer.parseInt(foodTextField.getText());
         other = Integer.parseInt(otherTextField.getText());
-   
+
         Connection conn = null;
         PreparedStatement ps = null;
-        
+
         try {
             conn = DriverManager.getConnection("jdbc:mysql://aws.computerstudi.es:3306/gc200362901", "gc200362901", "y2RKsUKFUX");
 
             String sql = "UPDATE tb_finance "
-                       + "SET mortgage = ?, electricity = ?, gas = ?, water = ?, internet = ?,"
-                       + " car = ?, insurance = ?, fuel = ?, food = ?, other = ? "
-                       + "WHERE userId = ? AND monthDescription = ?";
+                    + "SET mortgage = ?, electricity = ?, gas = ?, water = ?, internet = ?,"
+                    + " car = ?, insurance = ?, fuel = ?, food = ?, other = ? "
+                    + "WHERE userId = ? AND monthDescription = ?";
 
             ps = conn.prepareStatement(sql);
 
@@ -177,13 +179,11 @@ public class FXMLEditViewController implements Initializable {
             ps.setInt(10, other);
             ps.setInt(11, userId);
             ps.setString(12, monthSelected);
-            
+
             ps.executeUpdate();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             setEditErrLabelText(e);
-        }
-        finally {
+        } finally {
             if (ps != null) {
                 ps.close();
             }
@@ -209,6 +209,24 @@ public class FXMLEditViewController implements Initializable {
      */
     private void setEditErrLabelText(Exception e) {
         editErrLabel.setText(e.getMessage());
+    }
+
+    public void summaryButtonPressed(ActionEvent event) throws SQLException, IOException {
+        String UserIdString = userIdLabel.getText();
+        int loggedInUserId = Integer.parseInt(UserIdString);
+
+        sceneChangeSummary(event, loggedInUserId);
+    }
+
+    /**
+     * This method changes scenes to the Edit view
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void sceneChangeSummary(ActionEvent event, int loggedInUserId) throws IOException, SQLException {
+        SceneChanger sc = new SceneChanger();
+        sc.changeScenesUserIdToSummary(event, "FXMLSummaryView.fxml", "Summary", loggedInUserId);
     }
 
     /**
