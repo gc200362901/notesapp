@@ -75,7 +75,7 @@
                         <NumberAxis fx:id="spendingTotal" side="LEFT" />
                     </yAxis>
                 </BarChart>
-                <PieChart layoutX="305.0" layoutY="13.0" prefHeight="253.0" prefWidth="281.0" />
+                <PieChart fx:id="summaryPieChart" layoutX="289.0" layoutY="24.0" prefHeight="270.0" prefWidth="297.0" title="SPENDING BREAKDOWN" />
                 <GridPane layoutX="55.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

@@ -1,5 +1,6 @@
 package notesapp;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,13 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
@@ -27,6 +30,9 @@ import javafx.scene.control.Label;
 public class FXMLSummaryViewController implements Initializable {
 
     @FXML
+    private PieChart summaryPieChart;
+
+    @FXML
     private BarChart summaryBarChart;
 
     @FXML
@@ -34,7 +40,7 @@ public class FXMLSummaryViewController implements Initializable {
 
     @FXML
     private NumberAxis spendingTotal;
-    
+
     private XYChart.Series monthlySpendingTotals;
 
     @FXML
@@ -77,7 +83,7 @@ public class FXMLSummaryViewController implements Initializable {
         ArrayList monthlyBudgets = getAllMonthlyBudgets();
         populateSummaryLabels(monthlyBudgets);
         populateSummaryBarChart(monthlyBudgets);
-
+        populateSummaryPieChart(monthlyBudgets);
     }
 
     public ArrayList getAllMonthlyBudgets() throws SQLException {
@@ -123,7 +129,41 @@ public class FXMLSummaryViewController implements Initializable {
         }
         return monthlyBudgets;
     }
-    
+
+    private void populateSummaryPieChart(ArrayList monthlyBudgets) {
+
+        int mortgage = 0, electricity = 0, gas = 0, water = 0, internet = 0,
+                car = 0, insurance = 0, fuel = 0, food = 0, other = 0;
+
+        for (Object monthlyBudget : monthlyBudgets) {
+            Budget budget = (Budget) monthlyBudget;
+
+            mortgage += budget.getMortgage();
+            electricity += budget.getElectricity();
+            gas += budget.getGas();
+            water += budget.getWater();
+            internet += budget.getInternet();
+            car += budget.getCar();
+            insurance += budget.getInsurance();
+            fuel += budget.getFuel();
+            food += budget.getFood();
+            other += budget.getOther();
+        }
+        ObservableList<PieChart.Data> summaryPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Mortgage", mortgage),
+                new PieChart.Data("Electricity", electricity),
+                new PieChart.Data("Gas", gas),
+                new PieChart.Data("Water", water),
+                new PieChart.Data("Internet", internet),
+                new PieChart.Data("Car", car),
+                new PieChart.Data("Insurance", insurance),
+                new PieChart.Data("Fuel", fuel),
+                new PieChart.Data("Food", food),
+                new PieChart.Data("Other", other));
+
+        summaryPieChart.setData(summaryPieChartData);
+    }
+
     private void populateSummaryBarChart(ArrayList monthlyBudgets) {
         monthlySpendingTotals = new XYChart.Series<>();
 
@@ -136,18 +176,15 @@ public class FXMLSummaryViewController implements Initializable {
 
         summaryBarChart.getData().addAll(monthlySpendingTotals);
     }
-    
+
     private void getSummaryBarChartData(ArrayList monthlyBudgets) {
-        int janTotal = 0, febTotal = 0, marTotal = 0, aprTotal = 0, mayTotal = 0,
-                junTotal = 0, julTotal = 0, augTotal = 0, sepTotal = 0, octTotal = 0,
-                novTotal = 0, decTotal = 0;
-        
+
         LinkedList<Integer> monthlyTotals = new LinkedList<>();
         ArrayList<Integer> month = new ArrayList<>();
-        
-        for(Object monthlyBudget : monthlyBudgets) {
+
+        for (Object monthlyBudget : monthlyBudgets) {
             Budget budget = (Budget) monthlyBudget;
-                       
+
             month.add(budget.getMortgage());
             month.add(budget.getElectricity());
             month.add(budget.getGas());
@@ -158,16 +195,15 @@ public class FXMLSummaryViewController implements Initializable {
             month.add(budget.getFuel());
             month.add(budget.getFood());
             month.add(budget.getOther());
-            
+
             int monthTotal = month.stream()
-                                  .mapToInt(i -> i.intValue())
-                                  .sum();
-            
+                    .mapToInt(i -> i.intValue())
+                    .sum();
+
             month.clear();
 
             monthlyTotals.add(monthTotal);
         }
-        
         monthlySpendingTotals.getData().add(new XYChart.Data("Jan", monthlyTotals.get(0)));
         monthlySpendingTotals.getData().add(new XYChart.Data("Feb", monthlyTotals.get(1)));
         monthlySpendingTotals.getData().add(new XYChart.Data("Mar", monthlyTotals.get(2)));
@@ -188,7 +224,7 @@ public class FXMLSummaryViewController implements Initializable {
 
         for (Object monthlyBudget : monthlyBudgets) {
             Budget budget = (Budget) monthlyBudget;
-            
+
             mortgage += budget.getMortgage();
             electricity += budget.getElectricity();
             gas += budget.getGas();
@@ -211,6 +247,24 @@ public class FXMLSummaryViewController implements Initializable {
         fuelSummaryLabel.setText("$" + Integer.toString(fuel));
         foodSummaryLabel.setText("$" + Integer.toString(food));
         otherSummaryLabel.setText("$" + Integer.toString(other));
+    }
+
+    public void editButtonPressed(ActionEvent event) throws IOException, SQLException {
+        String userIdString = userIdLabel.getText();
+        int loggedInUserId = Integer.parseInt(userIdString);
+
+        sceneChangeEdit(event, loggedInUserId);
+    }
+    
+    /**
+     * This method changes scenes to the Edit view
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void sceneChangeEdit(ActionEvent event, int loggedInUserId) throws IOException {
+        SceneChanger sc = new SceneChanger();
+        sc.changeScenesUserId(event, "FXMLEditView.fxml", "Edit", loggedInUserId);
     }
 
     /**

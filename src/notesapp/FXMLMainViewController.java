@@ -76,7 +76,7 @@ public class FXMLMainViewController implements Initializable {
      * @param event
      * @throws IOException
      */
-    public void sceneChangeSummary(ActionEvent event, int loggedInUserId) throws IOException {
+    public void sceneChangeSummary(ActionEvent event, int loggedInUserId) throws IOException, SQLException {
         SceneChanger sc = new SceneChanger();
         sc.changeScenesUserIdToSummary(event, "FXMLSummaryView.fxml", "Summary", loggedInUserId);
     }
