@@ -431,6 +431,15 @@ public class Budget {
     public void setMonthDescription(String monthDescription) {
         validateMonthDescription(monthDescription);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("userId = %d\nmonthId = %d\nmonthDescription = %s\nmortgage = %d\n"
+                + "electricity = %d\ngas = %d\nwater = %d\ninternet = %d\ncar = %d\n"
+                + "insurance = %d\nfuel = %d\nfood = %d\nother = %d\n", userId, monthId,
+                monthDescription, mortgage, electricity, gas, water, internet, car,
+                insurance, fuel, food, other);
+    }
 
     public static void createNewBudget(int userId) throws SQLException {
         Connection conn = null;

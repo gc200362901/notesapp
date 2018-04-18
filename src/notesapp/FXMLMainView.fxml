@@ -31,7 +31,7 @@
                         <fx:define>
                             <Image fx:id="editBtnImage" url="@images/edit.png" />
                         </fx:define>
-                        <Button fx:id="editBtn" mnemonicParsing="false" onAction="#sceneChangeEdit">
+                        <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editButtonPressed">
                             <graphic>
                                 <ImageView image="$editBtnImage" />
                             </graphic>
