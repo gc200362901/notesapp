@@ -67,7 +67,7 @@
         </AnchorPane>
         <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="490.0" prefWidth="691.0">
             <children>
-                <BarChart layoutX="50.0" layoutY="237.0" prefHeight="175.0" prefWidth="500.0">
+                <BarChart layoutX="10.0" layoutY="262.0" prefHeight="175.0" prefWidth="574.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -75,8 +75,8 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </BarChart>
-                <PieChart layoutX="315.0" layoutY="20.0" prefHeight="217.0" prefWidth="241.0" />
-                <GridPane layoutX="50.0" layoutY="23.0" prefHeight="200.0" prefWidth="200.0">
+                <PieChart layoutX="305.0" layoutY="13.0" prefHeight="253.0" prefWidth="281.0" />
+                <GridPane layoutX="55.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -156,7 +156,12 @@
                         <Label fx:id="otherSummaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                     </children>
                 </GridPane>
-                <Label fx:id="userIdLabel" layoutX="14.0" layoutY="392.0" text="" visible="false" />
+                <Label fx:id="userIdLabel" layoutX="14.0" layoutY="392.0" text="Label" visible="false" />
+                <Label layoutX="55.0" layoutY="14.0" text="YTD SPENDING">
+                    <font>
+                        <Font name="Century Gothic Bold" size="16.0" />
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
     </children>
