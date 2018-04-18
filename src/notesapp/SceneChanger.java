@@ -1,6 +1,7 @@
 package notesapp;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +66,7 @@ public class SceneChanger {
 
     }
     
-        public void changeScenesUserIdToSummary(ActionEvent event, String viewName, String title, int loggedInUserId) throws IOException {
+        public void changeScenesUserIdToSummary(ActionEvent event, String viewName, String title, int loggedInUserId) throws IOException, SQLException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(viewName));

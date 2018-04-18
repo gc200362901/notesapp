@@ -67,12 +67,12 @@
         </AnchorPane>
         <AnchorPane layoutX="91.0" layoutY="69.0" prefHeight="490.0" prefWidth="691.0">
             <children>
-                <BarChart layoutX="10.0" layoutY="262.0" prefHeight="175.0" prefWidth="574.0">
+                <BarChart fx:id="summaryBarChart" layoutX="13.0" layoutY="276.0" prefHeight="175.0" prefWidth="574.0">
                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
+                        <CategoryAxis fx:id="month" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis side="LEFT" />
+                        <NumberAxis fx:id="spendingTotal" side="LEFT" />
                     </yAxis>
                 </BarChart>
                 <PieChart layoutX="305.0" layoutY="13.0" prefHeight="253.0" prefWidth="281.0" />
