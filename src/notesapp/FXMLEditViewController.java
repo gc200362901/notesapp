@@ -66,11 +66,22 @@ public class FXMLEditViewController implements Initializable {
     @FXML
     private Button saveButton;
 
+    /**
+     * This method gets the user id passed in during a scene change and 
+     * sets the user id as text in a label
+     * @param loggedInUserId 
+     */
     public void getLoggedInUserId(int loggedInUserId) {
         String userIdString = Integer.toString(loggedInUserId);
         userIdLabel.setText(userIdString);
     }
 
+    /**
+     * This method gets the user id from stored in the label and gets the 
+     * selection from the combo box. It then calls the getSelectedMonthlyBudget
+     * and populateEditTextFields methods
+     * @throws SQLException 
+     */
     public void monthComboBoxSelected() throws SQLException {
         saveButton.setDisable(false);
         String userIdString = userIdLabel.getText();
@@ -81,6 +92,14 @@ public class FXMLEditViewController implements Initializable {
 
     }
 
+    /**
+     * This method takes the user id and the month selected and queries the database.
+     * It returns a Budget object with the results of the query
+     * @param userId To set the user id
+     * @param monthSelected To set the month selected
+     * @return a Budget object
+     * @throws SQLException 
+     */
     private Budget getSelectedMonthlyBudget(int userId, String monthSelected) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -121,6 +140,11 @@ public class FXMLEditViewController implements Initializable {
         return monthlyBudget;
     }
 
+    /**
+     * This method takes in a Budget object and uses get methods to set 
+     * the text fields on the form
+     * @param monthlyBudget To set the Budget 
+     */
     private void populateEditTextFields(Budget monthlyBudget) {
 
         mortgageTextField.setText(Integer.toString(monthlyBudget.getMortgage()));
@@ -136,6 +160,13 @@ public class FXMLEditViewController implements Initializable {
 
     }
 
+    /**
+     * This method gets the data from the user id, month combobox and the 
+     * mortgage, electricity, gas, water, internet, car, insurance, fuel, food
+     * and other text fields. Then it queries the database and inserts the data 
+     * when the Save button is pressed
+     * @throws SQLException 
+     */
     public void editSaveButton() throws SQLException {
         int mortgage, electricity, gas, water, internet, car, insurance, fuel, food, other;
 
@@ -211,6 +242,14 @@ public class FXMLEditViewController implements Initializable {
         editErrLabel.setText(e.getMessage());
     }
 
+    /**
+     * When the Summary scene change button is pressed, this method gets the 
+     * user id string from the label and converts it to an int. Then it 
+     * calls the sceneChangeSummary method.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     public void summaryButtonPressed(ActionEvent event) throws SQLException, IOException {
         String UserIdString = userIdLabel.getText();
         int loggedInUserId = Integer.parseInt(UserIdString);
@@ -219,7 +258,9 @@ public class FXMLEditViewController implements Initializable {
     }
 
     /**
-     * This method changes scenes to the Edit view
+     * This method changes scenes to the Edit view using the 
+     * changeScenesUserIdToSummary method to pass the user id to the 
+     * summary scene
      *
      * @param event
      * @throws IOException

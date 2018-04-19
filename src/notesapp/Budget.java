@@ -15,6 +15,23 @@ public class Budget {
             fuel, food, other;
     private String monthDescription;
     
+    /**
+     * This constructor sets the user id, month id, month description, mortgage,
+     * electricity, gas, water, internet, car, insurance, fuel, food and other
+     * @param userId To set the user id amount 
+     * @param monthId To set the month id amount 
+     * @param monthDescription To set the month description amount 
+     * @param mortgage To set the mortgage amount 
+     * @param electricity To set the electricity amount 
+     * @param gas To set the gas amount 
+     * @param water To set the water amount 
+     * @param internet To set the internet amount 
+     * @param car To set the car amount 
+     * @param insurance To set the insurance amount
+     * @param fuel To set the fuel amount
+     * @param food To set the food amount
+     * @param other To set the other amount
+     */
     public Budget(int userId, int monthId, String monthDescription, int mortgage, int electricity,
             int gas, int water, int internet, int car, int insurance, int fuel, int food, int other) {
         validateUserId(userId);
@@ -32,10 +49,18 @@ public class Budget {
         validateMonthDescription(monthDescription);
     }
 
+    /**
+     * This method returns the user id
+     * @return the user id
+     */
     public int getUserId() {
         return userId;
     }
 
+    /**
+     * This method validates the user id is an integer 
+     * @param userId To set the user id
+     */
     private void validateUserId(int userId) {
         if (userId == (int)userId) {
             this.userId = userId;
@@ -45,6 +70,10 @@ public class Budget {
         }
     }
     
+    /**
+     * This method sets the user id after it has been validated
+     * @param userId To set the user Id
+     */
     public void setUserId(int userId) {
         validateUserId(userId);
     }
@@ -432,6 +461,10 @@ public class Budget {
         validateMonthDescription(monthDescription);
     }
     
+    /**
+     * This method overrides the tostring method 
+     * @return 
+     */
     @Override
     public String toString() {
         return String.format("userId = %d\nmonthId = %d\nmonthDescription = %s\nmortgage = %d\n"
@@ -441,6 +474,11 @@ public class Budget {
                 insurance, fuel, food, other);
     }
 
+    /**
+     * This method creates a new budget in the database. 
+     * @param userId To set the user id
+     * @throws SQLException 
+     */
     public static void createNewBudget(int userId) throws SQLException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
