@@ -11,10 +11,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -226,6 +229,22 @@ public class FXMLEditViewController implements Initializable {
                 conn.close();
             }
         }
+        submitNotification(monthSelected);
+    }
+    
+     /**
+     * This method displays a notification to the user that their contact has
+     * been saved to the database Uses controlsfx-8.40.14.jar from
+     * http://fxexperience.com/controlsfx/
+     */
+    private void submitNotification(String monthSelected) {
+        Notifications.create()
+                .title("Success!")
+                .text("       " + monthSelected + " Updated")
+                .graphic(null)
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.CENTER)
+                .showInformation();
     }
 
     /**
