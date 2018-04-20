@@ -33,6 +33,16 @@ public class FXMLRegisterViewController implements Initializable {
     private Label registerErrLabel;
 
     /**
+     * This method changes scenes to the Login view when the Back button 
+     * is pressed
+     * @param event
+     * @throws IOException 
+     */
+    public void backButton(ActionEvent event) throws IOException {
+        sceneChangeToLogin(event);
+    }
+    
+    /**
      * This method sets the text for the error message label when no exception
      * argument is given
      */

@@ -16,32 +16,63 @@ public class User {
     private String hashPw;
     private byte[] salt;
 
+    /**
+     * This constructer takes in a username, hashed password and salt to build 
+     * a User object
+     * @param username To set the username
+     * @param hashPw To set the hashed password
+     * @param salt To set the salt
+     */
     public User(String username, String hashPw, byte[] salt) {
         setUsername(username);
         setHashPw(hashPw);
         setSalt(salt);
     }
 
+    /**
+     * This method returns the username
+     * @return the username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * This method sets the username
+     * @param username To set the username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * This method returns the hashed password
+     * @return the hashed password
+     */
     public String getHashPw() {
         return hashPw;
     }
 
+    /**
+     * This method sets the hashed password
+     * @param hashPw To set the hashed password
+     */
     public void setHashPw(String hashPw) {
         this.hashPw = hashPw;
     }
 
+    /**
+     * This method returns the salt
+     * @return the salt
+     */
     public byte[] getSalt() {
         return salt;
     }
 
+    /**
+     * This method sets the salt
+     * @param salt To set the salt
+     */
     public void setSalt(byte[] salt) {
         this.salt = salt;
     }
@@ -83,6 +114,12 @@ public class User {
         }
     }
 
+    /**
+     * This method uses the username to query the database and return the 
+     * associated user id
+     * @return the user Id
+     * @throws SQLException 
+     */
     public int returnDbUserId() throws SQLException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="316.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="notesapp.FXMLRegisterViewController">
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="316.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notesapp.FXMLRegisterViewController">
     
 <children>
       <AnchorPane layoutX="54.0" layoutY="33.0" prefHeight="57.0" prefWidth="320.0" style="-fx-background-color: #E8F9C2;" AnchorPane.bottomAnchor="208.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -59,5 +59,10 @@
          </font>
       </Button>
       <Label fx:id="registerErrLabel" layoutX="24.0" layoutY="218.0" prefHeight="25.0" prefWidth="181.0" textFill="#eb1414" />
+      <Button layoutX="24.0" layoutY="218.0" mnemonicParsing="false" onAction="#backButton" prefHeight="33.0" prefWidth="80.0" text="Back">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

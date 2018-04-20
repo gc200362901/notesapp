@@ -76,6 +76,13 @@ public class FXMLSummaryViewController implements Initializable {
     @FXML
     private Label userIdLabel;
 
+    /**
+     * This method takes in the logged in user id from the scene change, ocnverts
+     * it to a string and sets the string in a label. Then it calls the methods
+     * to populate all the summary information for the scene
+     * @param loggedInUserId To set the logged in user id
+     * @throws SQLException 
+     */
     public void getLoggedInUserId(int loggedInUserId) throws SQLException {
         String userIdString = Integer.toString(loggedInUserId);
         userIdLabel.setText(userIdString);
@@ -86,6 +93,13 @@ public class FXMLSummaryViewController implements Initializable {
         populateSummaryPieChart(monthlyBudgets);
     }
 
+    /**
+     * This method gets the user id from a label and converts it to an int. It
+     * uses the user id to query the database and returns a collection of 
+     * monthly budgets
+     * @return a collection of monthly budgets
+     * @throws SQLException 
+     */
     public ArrayList getAllMonthlyBudgets() throws SQLException {
         String userIdString = userIdLabel.getText();
         int userId = Integer.parseInt(userIdString);
@@ -130,6 +144,11 @@ public class FXMLSummaryViewController implements Initializable {
         return monthlyBudgets;
     }
 
+    /**
+     * This method takes in a collection of monthly budgets and uses it 
+     * to populate a pie chart
+     * @param monthlyBudgets To set the arraylist of monthly budgets
+     */
     private void populateSummaryPieChart(ArrayList monthlyBudgets) {
 
         int mortgage = 0, electricity = 0, gas = 0, water = 0, internet = 0,
@@ -164,6 +183,11 @@ public class FXMLSummaryViewController implements Initializable {
         summaryPieChart.setData(summaryPieChartData);
     }
 
+    /**
+     * This method configures the bar chart and calls the getSummaryBarChartData
+     * method to populate the bar chart
+     * @param monthlyBudgets To set the arraylist of monthly budgets
+     */
     private void populateSummaryBarChart(ArrayList monthlyBudgets) {
         monthlySpendingTotals = new XYChart.Series<>();
 
@@ -177,11 +201,17 @@ public class FXMLSummaryViewController implements Initializable {
         summaryBarChart.getData().addAll(monthlySpendingTotals);
     }
 
+    /**
+     * This method takes in a collection of monthly budgets and uses it to get
+     * the total spending amount for each month. Then it puts the results in
+     * a bar chart
+     * @param monthlyBudgets To set the arraylist of monthly budgets
+     */
     private void getSummaryBarChartData(ArrayList monthlyBudgets) {
 
         LinkedList<Integer> monthlyTotals = new LinkedList<>();
         ArrayList<Integer> month = new ArrayList<>();
-
+     
         for (Object monthlyBudget : monthlyBudgets) {
             Budget budget = (Budget) monthlyBudget;
 
@@ -201,7 +231,7 @@ public class FXMLSummaryViewController implements Initializable {
                     .sum();
 
             month.clear();
-
+           
             monthlyTotals.add(monthTotal);
         }
         monthlySpendingTotals.getData().add(new XYChart.Data("Jan", monthlyTotals.get(0)));
@@ -218,6 +248,11 @@ public class FXMLSummaryViewController implements Initializable {
         monthlySpendingTotals.getData().add(new XYChart.Data("Dec", monthlyTotals.get(11)));
     }
 
+    /**
+     * This method takes in a collection of monthly budgets and calculates 
+     * the amount spent for each category. Then it puts the results in labels.
+     * @param monthlyBudgets To set the arraylist of monthly budgets
+     */
     private void populateSummaryLabels(ArrayList monthlyBudgets) {
         int mortgage = 0, electricity = 0, gas = 0, water = 0, internet = 0,
                 car = 0, insurance = 0, fuel = 0, food = 0, other = 0;
@@ -249,6 +284,14 @@ public class FXMLSummaryViewController implements Initializable {
         otherSummaryLabel.setText("$" + Integer.toString(other));
     }
 
+    /**
+     * When the edit button is pushed, this method gets the user id string from
+     * a label and converts it to an int. Then it passes it as an argument in
+     * the sceneChangeEdit method and executes it
+     * @param event
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void editButtonPressed(ActionEvent event) throws IOException, SQLException {
         String userIdString = userIdLabel.getText();
         int loggedInUserId = Integer.parseInt(userIdString);
@@ -257,7 +300,8 @@ public class FXMLSummaryViewController implements Initializable {
     }
     
     /**
-     * This method changes scenes to the Edit view
+     * This method changes scenes to the Edit view using the logged in user id
+     * as an argument
      *
      * @param event
      * @throws IOException
