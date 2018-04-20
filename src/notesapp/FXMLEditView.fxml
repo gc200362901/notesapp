@@ -51,7 +51,7 @@
                         <fx:define>
                             <Image fx:id="logoutBtnImage" url="@images/logout.png" />
                         </fx:define>
-                        <Button fx:id="logoutBtn" mnemonicParsing="false">
+                        <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logoutButton">
                             <graphic>
                                 <ImageView image="$logoutBtnImage" />
                             </graphic>
