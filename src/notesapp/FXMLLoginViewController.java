@@ -68,9 +68,9 @@ public class FXMLLoginViewController implements Initializable {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://aws.computerstudi.es:3306/gc200362901", "gc200362901", "y2RKsUKFUX");
             statement = conn.createStatement();
-            TreeSet usernames = collectUsernames(rs, statement);
+            TreeSet usernames = User.collectUsernames(rs, statement);
             try {
-                validateUsername(usernames, username);
+                validateUsernameLogin(usernames, username);
                 try {
                     String dbHashPw = getDbHashPw(conn, rs, preparedStatement, username);
                     byte[] dbSalt = getDbSalt(conn, rs, preparedStatement, username);
@@ -96,6 +96,7 @@ public class FXMLLoginViewController implements Initializable {
         }
     }
 
+    
     /**
      * This method queries the database and stores all the usernames in a
      * TreeSet for efficient searching
@@ -105,6 +106,7 @@ public class FXMLLoginViewController implements Initializable {
      * @return a TreeSet of usernames
      * @throws SQLException
      */
+    /*
     private TreeSet collectUsernames(ResultSet rs, Statement statement) throws SQLException {
         TreeSet<String> usernames = new TreeSet<>();
 
@@ -114,8 +116,8 @@ public class FXMLLoginViewController implements Initializable {
             usernames.add(rs.getString("username"));
         }
         return usernames;
-    }
-
+    }*/
+    
     /**
      * This method validates the username entered is present in the TreeSet of
      * usernames
@@ -123,7 +125,7 @@ public class FXMLLoginViewController implements Initializable {
      * @param usernames A collection of usernames
      * @param username To set the username entered in the text field
      */
-    private void validateUsername(TreeSet usernames, String username) {
+    private void validateUsernameLogin(TreeSet usernames, String username) {
         boolean isValid = usernames.stream()
                                    .anyMatch(u -> u.equals(username));
         if (!isValid) {

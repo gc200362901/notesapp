@@ -2,7 +2,10 @@ package notesapp;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.TreeSet;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,15 +36,16 @@ public class FXMLRegisterViewController implements Initializable {
     private Label registerErrLabel;
 
     /**
-     * This method changes scenes to the Login view when the Back button 
-     * is pressed
+     * This method changes scenes to the Login view when the Back button is
+     * pressed
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     public void backButton(ActionEvent event) throws IOException {
         sceneChangeToLogin(event);
     }
-    
+
     /**
      * This method sets the text for the error message label when no exception
      * argument is given
@@ -68,9 +72,11 @@ public class FXMLRegisterViewController implements Initializable {
      * @return
      */
     private boolean validatePassword(String password) {
+
         if (password.length() < 6) {
             throw new IllegalArgumentException("Password must be 6 characters");
         }
+
         return true;
     }
 
@@ -101,26 +107,31 @@ public class FXMLRegisterViewController implements Initializable {
     }
 
     /**
-     * When the Register button is pressed, this method gets the username, 
+     * When the Register button is pressed, this method gets the username,
      * password and confirm password. It checks that the password and confirm
-     * pass word match and then calls the validatePassword method.
-     * Then it uses the getSalt method to generate a salt. Then it uses the getPW
-     * method with the salt and password as arguments to generate a hashed 
-     * password. Then it stores the username, hashed password and salt in a User
-     * object and commits the fields to the database. Then queries the database
-     * to get the associated user id. It uses the user id to create a new Budget
-     * in the tb_finance table for the new register user. Then it changes to
-     * the Login scene.
-     * @param event 
+     * pass word match and then calls the validatePassword method. Then it uses
+     * the getSalt method to generate a salt. Then it uses the getPW method with
+     * the salt and password as arguments to generate a hashed password. Then it
+     * stores the username, hashed password and salt in a User object and
+     * commits the fields to the database. Then queries the database to get the
+     * associated user id. It uses the user id to create a new Budget in the
+     * tb_finance table for the new register user. Then it changes to the Login
+     * scene.
+     *
+     * @param event
      */
     public void registerButton(ActionEvent event) {
         setRegisterErrLabel();
+        ResultSet rs = null;
+        Statement statement = null;
         String username = registerUsernameTextfield.getText();
         String password = registerPwField.getText();
         String confirmPassword = registerConfirmPwfield.getText();
 
         if (password.equals(confirmPassword)) {
             try {
+                TreeSet usernames = User.collectUsernames(rs, statement);
+                validateUsernameRegister(usernames, username);
                 validatePassword(password);
                 byte[] salt = PasswordGenerator.getSalt();
                 String hashPw = PasswordGenerator.getPW(password, salt);
@@ -135,6 +146,21 @@ public class FXMLRegisterViewController implements Initializable {
             }
         } else {
             registerErrLabel.setText("Passwords do not match!");
+        }
+    }
+
+    /**
+     * This method validates the username entered is not present in the TreeSet of
+     * usernames
+     *
+     * @param usernames A collection of usernames
+     * @param username To set the username entered in the text field
+     */
+    private void validateUsernameRegister(TreeSet usernames, String username) {
+        boolean isNotValid = usernames.stream()
+                .anyMatch(u -> u.equals(username));
+        if (isNotValid) {
+            throw new IllegalArgumentException("Username is already taken");
         }
     }
 

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.TreeSet;
 
 /**
  *
@@ -112,6 +114,26 @@ public class User {
                 conn.close();
             }
         }
+    }
+    
+     /**
+     * This method queries the database and stores all the usernames in a
+     * TreeSet for efficient searching
+     *
+     * @param rs
+     * @param statement
+     * @return a TreeSet of usernames
+     * @throws SQLException
+     */
+    public static TreeSet collectUsernames(ResultSet rs, Statement statement) throws SQLException {
+        TreeSet<String> usernames = new TreeSet<>();
+
+        rs = statement.executeQuery("SELECT username FROM tb_user");
+
+        while (rs.next()) {
+            usernames.add(rs.getString("username"));
+        }
+        return usernames;
     }
 
     /**
