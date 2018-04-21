@@ -174,7 +174,7 @@ public class FXMLEditViewController implements Initializable {
      *
      * @throws SQLException
      */
-    public void editSaveButton() throws SQLException {
+    public void editSaveButton(ActionEvent event) throws SQLException, IOException {
         int mortgage, electricity, gas, water, internet, car, insurance, fuel, food, other;
 
         String userIdString = userIdLabel.getText();
@@ -230,6 +230,7 @@ public class FXMLEditViewController implements Initializable {
             }
         }
         submitNotification(monthSelected);
+        summaryButtonPressed(event);
     }
     
      /**
@@ -242,7 +243,7 @@ public class FXMLEditViewController implements Initializable {
                 .title("Success!")
                 .text("       " + monthSelected + " Updated")
                 .graphic(null)
-                .hideAfter(Duration.seconds(4))
+                .hideAfter(Duration.seconds(5))
                 .position(Pos.CENTER)
                 .showInformation();
     }
