@@ -1,5 +1,4 @@
 <h2>Budget Planner in Java</h2>
-<p>database passwords removed</p>
 
 <ul>
   <li>Console application built in Java using MVC</li>
